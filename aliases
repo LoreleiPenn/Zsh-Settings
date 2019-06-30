@@ -1,0 +1,31 @@
+alias ls='ls -sF -C -h -v --color=auto'
+if [[ $USER == "root" ]]; then
+	alias emerge='emerge -a'
+else
+	alias emerge='emerge --pretend'
+	alias hibernate='sudo /usr/sbin/hibernate'
+fi
+alias Z='echo "Rescanning RC";. ~/.zshrc'
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias grep="grep --color=always"
+alias egrep="egrep --color=always"
+alias less="less -I"
+alias lynx="lynx -accept_all_cookies"
+alias eixC="eix --force-color"
+alias euses="euses -c"
+alias Vi="gvim"
+alias nv="nvim"
+alias Nv="nvim-qt"
+#alias screen="screen -U"
+alias xterm="xterm -u8"
+alias Tssh="torify ssh"
+alias Apagar='shutdown -h now;exit'
+#alias lsflash='ls /dev/flash'
+alias irb='irb --simple-prompt'
+alias clinks='links -driver fb'
+alias SVim='sudo gvim'
+alias SNv='sudo nvim-qt'
+alias mednafenHDMI='mednafen -sound.device hw:0,7'
+alias mednafen='mednafen -sound.device hw:0,0'
