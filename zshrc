@@ -84,8 +84,15 @@ alias time='time -p ' # -p for POSIX output
 #                                   Plugins
 # =============================================================================
 # Check if zplug is installed
+#[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+#source ~/.zplug/init.zsh
 
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update
+    zplug "zplug/zplug", hook-build:"zplug --self-manage"
+fi
 source ~/.zplug/init.zsh
 
 # zplug
@@ -113,6 +120,8 @@ zplug "chrissicool/zsh-256color"
 zplug "mollifier/anyframe"
 
 # Miscellaneous commands
+zplug "zdharma/zsh-diff-so-fancy"
+
 #zplug "andrewferrier/fzf-z"
 zplug "k4rthik/git-cal", as:command
 zplug "peco/peco", as:command, from:gh-r, use:"*${(L)$(uname -s)}*amd64*"
@@ -138,6 +147,13 @@ zplug "arzzen/calc.plugin.zsh"
 # Directory colors
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 zplug "pinelibg/dircolors-solarized-zsh"
+
+# ZSH history database
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+#zplug "larkery/zsh-histdb", use:sqlite-history.zsh, hook-load:"histdb-update-outcome"
+zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh", hook-load:"histdb-update-outcome"
+
+zplug "zdharma/fast-syntax-highlighting"
 
 zplug "plugins/common-aliase",     from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
@@ -255,6 +271,12 @@ bindkey '^[[Z' reverse-menu-complete
 #   builtin cd $@ && ls;
 #}
 
+function history() {
+	#rg --smart-case --colors 'path:fg:yellow' --vimgrep -o '[^;]*$' ~/.zsh_history
+	#rg --smart-case --vimgrep -p -o '[^;]*$' ~/.zsh_history
+    rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" --vimgrep -o '[^;]*$' ~/.zsh_history
+}
+
 # Watching other users
 #WATCHFMT="%n %a %l from %m at %t."
 watch=(notme)         # Report login/logout events for everybody except ourself.
@@ -371,6 +393,25 @@ if ! zplug check; then
     if read -q; then
         echo; zplug install
     fi
+fi
+
+if zplug check "larkery/zsh-histdb"; then
+    if [ ! -f "$HOME/.histdb/zsh-history.db" ]; then
+        echo "Import your old zsh history with github.com/drewis/go-histdbimport"
+    fi
+
+    #_zsh_autosuggest_strategy_histdb_top_here() {
+    #    local query="select commands.argv from
+    #history left join commands on history.command_id = commands.rowid
+    #left join places on history.place_id = places.rowid
+    #where places.dir LIKE '$(sql_escape $PWD)%'
+    #and commands.argv LIKE '$(sql_escape $1)%'
+    #group by commands.argv order by count(*) desc limit 1"
+    #    suggestion=$(_histdb_query "$query")
+    #}
+    #ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
+
+    #bindkey '^r' _histdb-isearch
 fi
 
 if zplug check "junegunn/fzf-bin"; then
@@ -739,3 +780,5 @@ zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # vim: ft=zsh sw=4 sts=4 et
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
