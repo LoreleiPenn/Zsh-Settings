@@ -10,7 +10,10 @@ sh -c "$(curl -pfsSL https://raw.githubusercontent.com/LoreleiLVNH/Zsh-Settings/
 ```shell
 sh -c "$(wget -O - https://raw.githubusercontent.com/LoreleiLVNH/Zsh-Settings/master/zsh-setup.sh)"
 ```
-This will setup _Oh my zsh_ which is necessary for my settings.
-
-## Issues
-The setup will have issues with ju
+This will setup _Oh my zsh_ which is necessary for my settings and using the plugins defined on the _zshrc_ file.
+<p>
+To change the shell, the command
+```shell
+chsh -s /bin/zsh USERNAME
+```
+is executed.
