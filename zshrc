@@ -125,7 +125,7 @@ zplug "zdharma/zsh-diff-so-fancy"
 #zplug "andrewferrier/fzf-z"
 zplug "k4rthik/git-cal", as:command
 zplug "peco/peco", as:command, from:gh-r, use:"*${(L)$(uname -s)}*amd64*"
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
+#zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
 zplug "junegunn/fzf", use:"shell/*.zsh"
 #zplug "b4b4r07/easy-oneliner", if:"which fzf", on:"junegunn/fzf-bin"
 
