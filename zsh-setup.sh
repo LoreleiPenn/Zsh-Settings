@@ -9,7 +9,7 @@ if [ ! -d $ZHOME ]; then
 fi
 rm ~/.zshrc
 cd $ZHOME
-git clone https://github.com/LoreleiLVNH/Zsh-Settings.git .
+git clone https://github.com/LoreleiPenn/Zsh-Settings.git .
 cd $HOME
 echo "Linking $ZHOME/zshrc -> ~/.zshrc"
 ln ${ZHOME}/zshrc ~/.zshrc
@@ -17,7 +17,7 @@ echo "Linking (symlink) $ZHOME/zkdb -> ~/.zkbd"
 ln -s ${ZHOME}/zkbd ~/.zkbd
 
 echo "Installing Zplug..."
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+[ ! -s ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
 
 echo "Installing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
