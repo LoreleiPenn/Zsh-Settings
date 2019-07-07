@@ -4,11 +4,11 @@ My personal configuration for _Zsh_
 Run the following command on the terminal:
 - via curl:
 ```shell
-sh -c "$(curl -pfsSL https://raw.githubusercontent.com/LoreleiLVNH/Zsh-Settings/master/zsh-setup.sh)"
+sh -c "$(curl -pfsSL https://raw.githubusercontent.com/LoreleiPenn/Zsh-Settings/master/zsh-setup.sh)"
 ```
 - via wget:
 ```shell
-sh -c "$(wget -O - https://raw.githubusercontent.com/LoreleiLVNH/Zsh-Settings/master/zsh-setup.sh)"
+sh -c "$(wget -O - https://raw.githubusercontent.com/LoreleiPenn/Zsh-Settings/master/zsh-setup.sh)"
 ```
 This will setup _Oh my zsh_ which is necessary for my settings and using the plugins defined on the _zshrc_ file.
 
