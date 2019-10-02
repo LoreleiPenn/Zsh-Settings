@@ -25,6 +25,10 @@ export EDITOR="nvim"
 export LANG="en_GB.UTF-8"
 export LC_ALL="en_GB.UTF-8"
 
+# Compiler Variables (Using LLVM: Clang, Clang++)
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
 # History
 export HISTFILE="$HOME/.zsh/history"
 export HISTSIZE=10000
@@ -104,7 +108,14 @@ source ~/.zplug/init.zsh
 
 # Load theme
 zplug "mafredri/zsh-async", from:github, use:async.zsh
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+if [[ ${TTY:0:8} == "/dev/tty" ]]; then
+    fpath=("$HOME/.zsh/prompts" "$fpath[@]")
+    autoload -U compinit promptinit
+    compinit
+    promptinit; prompt lorelei
+else
+    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+fi
 #zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "aaronjamesyoung/aaron-zsh-theme", use:aaron.zsh-theme, from:github, as:theme
 #zplug "gporrata/bklyn-zsh"
