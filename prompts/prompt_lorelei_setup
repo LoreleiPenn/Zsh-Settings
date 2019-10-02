@@ -1,0 +1,35 @@
+# 龙 prompt theme
+
+function prompt_long_help () {
+  cat <<'EOF'
+This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt long [<promptcolor> [<usercolor> [<rootcolor>]]]
+
+EOF
+}
+
+function prompt_long_setup () {
+  prompt_gentoo_prompt=${1:-'blue'}
+  prompt_gentoo_user=${2:-'green'}
+  prompt_gentoo_root=${3:-'red'}
+  ao='blue'
+  aka='red'
+  midori='green'
+
+  if [[ "$USER" == 'root' ]]; then
+    base_prompt="%B%F{$midori}[%T] %B%F{$ao}[%(?.%B%F{$midori}✓.%B%F{$aka}✗)%B%F{$ao}] %B%F{$prompt_gentoo_root}%m%k "
+  else
+    base_prompt="%B%F{$aka}[%T] %B%F{$ao}[%(?.%B%F{$midori}✓.%B%F{$aka}✗)%B%F{$ao}] %B%F{$prompt_gentoo_user}%n@%m%k "
+  fi
+  post_prompt="%b%f%k"
+
+  #setopt noxtrace localoptions
+
+  path_prompt="%B%F{$prompt_gentoo_prompt}%1~"
+  PS1="$pre_prompt$base_prompt$path_prompt %# $post_prompt"
+  PS2="$base_prompt$path_prompt %_> $post_prompt"
+  PS3="$base_prompt$path_prompt ?# $post_prompt"
+}
+
+prompt_long_setup "$@"
