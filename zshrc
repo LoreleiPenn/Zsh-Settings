@@ -17,7 +17,7 @@ zsh_wifi_signal(){
 #                                   Variables
 # =============================================================================
 # Common ENV variables
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 export SHELL="/bin/zsh"
 export EDITOR="nvim"
 
@@ -26,8 +26,8 @@ export LANG="en_GB.UTF-8"
 export LC_ALL="en_GB.UTF-8"
 
 # Compiler Variables (Using LLVM: Clang, Clang++)
-export CC=/usr/bin/clang
-export CXX=/usr/bin/clang++
+# export CC=/usr/bin/clang
+# export CXX=/usr/bin/clang++
 
 # History
 export HISTFILE="$HOME/.zsh/history"
@@ -108,7 +108,8 @@ source ~/.zplug/init.zsh
 
 # Load theme
 zplug "mafredri/zsh-async", from:github, use:async.zsh
-if [[ ${TTY:0:8} == "/dev/tty" ]]; then
+# if [[ ${TTY:0:8} == "/dev/tty" ]] || [[ $TERM == "screen-256color" ]]; then
+if [[ -z $XAUTHORITY ]]; then
     fpath=("$HOME/.zsh/prompts" "$fpath[@]")
     autoload -U compinit promptinit
     compinit
