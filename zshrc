@@ -162,8 +162,14 @@ zplug "pinelibg/dircolors-solarized-zsh"
 
 # ZSH history database
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-#zplug "larkery/zsh-histdb", use:sqlite-history.zsh, hook-load:"histdb-update-outcome"
-zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh", hook-load:"histdb-update-outcome"
+# zplug "larkery/zsh-histdb", use:sqlite-history.zsh, hook-load:"histdb-update-outcome"
+#
+# Change in larkery/zsh-histdb: 2020/06/30
+# longer need to `add-zsh-hook precmd histdb-update-outcome`
+# in your rc file. This now happens when you source `sqlite-history.zsh`.
+#
+# zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh", hook-load:"histdb-update-outcome"
+zplug "larkery/zsh-histdb", use:"{sqlite-history,histdb-interactive}.zsh"
 
 zplug "zdharma/fast-syntax-highlighting"
 
