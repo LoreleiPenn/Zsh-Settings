@@ -11,8 +11,14 @@ rm ~/.zshrc
 cd $ZHOME
 git clone https://github.com/LoreleiPenn/Zsh-Settings.git .
 cd $HOME
-echo "Linking $ZHOME/zshrc -> ~/.zshrc"
-ln ${ZHOME}/zshrc ~/.zshrc
+for f in zshrc p10k.zsh; do
+    echo "Linking $ZHOME/${f} -> ~/.${f}"
+    ln ${ZHOME}/${f} ~/.${f}
+end
+#echo "Linking $ZHOME/zshrc -> ~/.zshrc"
+#ln ${ZHOME}/zshrc ~/.zshrc
+#echo "Linking $ZHOME/p10k.zsh -> ~/.p10k.zsh"
+#ln ${ZHOME}/p10k.zsh ~/.p10k.zsh
 echo "Linking (symlink) $ZHOME/zkdb -> ~/.zkbd"
 ln -s ${ZHOME}/zkbd ~/.zkbd
 
@@ -35,3 +41,4 @@ curl -fsSL ${PECO_DWL} |tar -C $PECO_DIR -zxf - peco_linux_${PECO_ARQ}/peco --st
 
 echo "Setup finished. Run Zsh to finish installing everything else."
 echo "You can now register Zsh with chsh to make it your default shell."
+
