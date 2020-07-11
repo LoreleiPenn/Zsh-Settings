@@ -1,0 +1,11 @@
+# History files
+history*
+# Old Gentoo files
+vars
+titles
+java
+Zsh-colors
+rc
+completion
+# Config file for Github pages.
+_config.yml
