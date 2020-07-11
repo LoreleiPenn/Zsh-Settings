@@ -115,7 +115,7 @@ if [[ -z $XAUTHORITY ]]; then
     compinit
     promptinit; prompt lorelei
 else
-    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+    zplug "romkatv/powerlevel10k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
 fi
 #zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "aaronjamesyoung/aaron-zsh-theme", use:aaron.zsh-theme, from:github, as:theme
@@ -573,7 +573,7 @@ if zplug check "denysdovhan/spaceship-prompt"; then
     #RPROMPT='[%F{yellow}%?%f]'
 fi
 
-if zplug check "bhilburn/powerlevel9k"; then
+if zplug check "romkatv/powerlevel10k"; then
     #DEFAULT_USER=$USER
 
     # Easily switch primary foreground/background colors
