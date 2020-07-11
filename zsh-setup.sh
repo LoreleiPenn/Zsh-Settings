@@ -15,7 +15,7 @@ cd $HOME
 for f in zshrc p10k.zsh; do
     echo "Linking $ZHOME/${f} -> ~/.${f}"
     ln ${ZHOME}/${f} ~/.${f}
-end
+done
 #echo "Linking $ZHOME/zshrc -> ~/.zshrc"
 #ln ${ZHOME}/zshrc ~/.zshrc
 #echo "Linking $ZHOME/p10k.zsh -> ~/.p10k.zsh"
