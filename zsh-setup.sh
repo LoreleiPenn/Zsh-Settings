@@ -10,6 +10,7 @@ if [ ! -d $ZHOME ]; then
 fi
 rm ~/.zshrc
 cd $ZHOME
+echo "Cloning from my repo..."
 git clone https://github.com/LoreleiPenn/Zsh-Settings.git .
 cd $HOME
 for f in zshrc p10k.zsh; do
