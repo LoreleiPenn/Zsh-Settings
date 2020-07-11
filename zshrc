@@ -116,13 +116,13 @@ source ~/.zplug/init.zsh
 # Load theme
 zplug "mafredri/zsh-async", from:github, use:async.zsh
 # if [[ ${TTY:0:8} == "/dev/tty" ]] || [[ $TERM == "screen-256color" ]]; then
-if [[ -z $XAUTHORITY ]]; then
+if [[ -z $XAUTHORITY && -z $WSL_DISTRO_NAME ]]; then
     fpath=("$HOME/.zsh/prompts" "$fpath[@]")
     autoload -U compinit promptinit
     compinit
     promptinit; prompt lorelei
 else
-    zplug "romkatv/powerlevel10k", use:powerlevel9k.zsh-theme, from:github, at:next, as:theme
+    zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme, from:github, at:next, as:theme
 fi
 #zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "aaronjamesyoung/aaron-zsh-theme", use:aaron.zsh-theme, from:github, as:theme
