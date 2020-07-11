@@ -5,7 +5,7 @@ sleep 1s
 
 echo "Installing my setup..."
 ZHOME=${HOME}/.zsh
-if [ ! -d $ZHOME ]; then
+if [[ ! -d $ZHOME ]]; then
     mkdir $ZHOME
 fi
 rm ~/.zshrc
@@ -24,7 +24,9 @@ echo "Linking (symlink) $ZHOME/zkdb -> ~/.zkbd"
 ln -s ${ZHOME}/zkbd ~/.zkbd
 
 echo "Installing Zplug..."
-[ ! -s ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+if [[ ! -s ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+fi
 
 echo "Installing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -37,7 +39,9 @@ PECO_PKG=peco_linux_${PECO_ARQ}.tar.gz
 PECO_DWL=${PECO_URL}/${PECO_VER}/${PECO_PKG}
 PECO_DIR=$HOME/.zplug/repos/peco/peco
 echo "Installing PECO (${PECO_VER})..."
-[ ! -d $PECO_DIR ] && mkdir -p $PECO_DIR
+if [[ ! -d $PECO_DIR ]]; then
+    mkdir -p $PECO_DIR
+fi
 curl -fsSL ${PECO_DWL} |tar -C $PECO_DIR -zxf - peco_linux_${PECO_ARQ}/peco --strip-components 1
 
 echo "Setup finished. Run Zsh to finish installing everything else."
