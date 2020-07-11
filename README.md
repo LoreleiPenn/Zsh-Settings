@@ -1,5 +1,6 @@
 # Zsh Settings
-My personal configuration for _Zsh_
+My personal configuration for _Zsh_. Theme: _powerlevel10k_.
+
 ## Setup
 Run the following command on the terminal:
 - via curl:
