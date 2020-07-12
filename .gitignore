@@ -7,5 +7,7 @@ java
 Zsh-colors
 rc
 completion
+# Old zkbd folder
+zkbd.old
 # Config file for Github pages.
 _config.yml
