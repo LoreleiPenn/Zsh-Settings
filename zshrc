@@ -24,7 +24,7 @@ zsh_wifi_signal(){
 #                                   Variables
 # =============================================================================
 # Common ENV variables
-#export TERM="xterm-256color"
+export TERM="xterm-256color"
 export SHELL="/bin/zsh"
 export EDITOR="nvim"
 
@@ -125,7 +125,7 @@ zplug "mafredri/zsh-async", from:github, use:async.zsh
 #    zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme, from:github, at:next, as:theme
 #fi
 
-zplug romkatv/powerlevel10k, as:theme, depth:1 
+zplug romkatv/powerlevel10k, as:theme, depth:1
 #zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "aaronjamesyoung/aaron-zsh-theme", use:aaron.zsh-theme, from:github, as:theme
 #zplug "gporrata/bklyn-zsh"
