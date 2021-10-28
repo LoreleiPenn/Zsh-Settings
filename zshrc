@@ -116,14 +116,16 @@ source ~/.zplug/init.zsh
 # Load theme
 zplug "mafredri/zsh-async", from:github, use:async.zsh
 # if [[ ${TTY:0:8} == "/dev/tty" ]] || [[ $TERM == "screen-256color" ]]; then
-if [[ -z $XAUTHORITY && -z $WSL_DISTRO_NAME ]]; then
-    fpath=("$HOME/.zsh/prompts" "$fpath[@]")
-    autoload -U compinit promptinit
-    compinit
-    promptinit; prompt lorelei
-else
-    zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme, from:github, at:next, as:theme
-fi
+#if [[ -z $XAUTHORITY && -z $WSL_DISTRO_NAME ]]; then
+#    fpath=("$HOME/.zsh/prompts" "$fpath[@]")
+#    autoload -U compinit promptinit
+#    compinit
+#    promptinit; prompt lorelei
+#else
+#    zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme, from:github, at:next, as:theme
+#fi
+
+zplug romkatv/powerlevel10k, as:theme, depth:1 
 #zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "aaronjamesyoung/aaron-zsh-theme", use:aaron.zsh-theme, from:github, as:theme
 #zplug "gporrata/bklyn-zsh"
@@ -548,211 +550,6 @@ if zplug check "b4b4r07/zsh-history-enhanced"; then
     ZSH_HISTORY_KEYBIND_GET_ALL="^r^a"
 fi
 
-if zplug check "denysdovhan/spaceship-prompt"; then
-    SPACESHIP_PROMPT_ORDER=(
-    # time        # Time stampts section (Disabled)
-    user          # Username section
-    dir           # Current directory section
-    host          # Hostname section
-    git           # Git section (git_branch + git_status)
-    exec_time     # Execution time
-    line_sep      # Line break
-    battery       # Battery level and status
-    jobs          # Background jobs indicator
-    char          # Prompt character
-    )
-
-    SPACESHIP_RPROMPT_ORDER=(
-    exit_code     # Exit code section
-    time
-    )
-
-    SPACESHIP_TIME_SHOW=true
-    SPACESHIP_EXIT_CODE_SHOW=true
-
-    SPACESHIP_PROMPT_SEPARATE_LINE=false
-    SPACESHIP_PROMPT_ADD_NEWLINE=true
-
-    #SPACESHIP_PROMPT_SEPARATE_LINE=false
-    #SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
-
-    #PROMPT='%F{red}%n%f@%F{blue}%m%f %F{yellow}%1~%f %# '
-    #RPROMPT='[%F{yellow}%?%f]'
-fi
-
-if zplug check "romkatv/powerlevel10k"; then
-    #DEFAULT_USER=$USER
-
-    # Easily switch primary foreground/background colors
-    #DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
-
-    DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235 PROMPT_COLOR=173
-    DEFAULT_FOREGROUND=198 DEFAULT_BACKGROUND=090 PROMPT_COLOR=173
-    DEFAULT_FOREGROUND=235 DEFAULT_BACKGROUND=159 PROMPT_COLOR=173
-    DEFAULT_FOREGROUND=123 DEFAULT_BACKGROUND=059 PROMPT_COLOR=183
-    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=238 PROMPT_COLOR=173
-    DEFAULT_FOREGROUND=159 DEFAULT_BACKGROUND=239 PROMPT_COLOR=172
-    #DEFAULT_COLOR=$DEFAULT_FOREGROUND
-    DEFAULT_COLOR="clear"
-
-    P9K_MODE="nerdfont-complete"
-    P9K_STATUS_VERBOSE=false
-    P9K_DIR_SHORTEN_LENGTH=1
-    #P9K_SHORTEN_STRATEGY="truncate_right"
-
-    P9K_DIR_OMIT_FIRST_CHARACTER=false
-
-    P9K_CONTEXT_ALWAYS_SHOW=true
-    P9K_CONTEXT_ALWAYS_SHOW_USER=false
-
-    #P9K_CONTEXT_TEMPLATE="\uF109 %m"
-
-    #P9K_LEFT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
-    #P9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
-
-    #P9K_LEFT_SUBSEGMENT_SEPARATOR="%F{$DEFAULT_BACKGROUND}\ue0b0%f"
-    #P9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$DEFAULT_BACKGROUND}\ue0b2%f"
-    P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-    P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-    #P9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{000}%f"
-    #P9K_LEFT_SUBSEGMENT_SEPARATOR="%F{000}／%f" # 
-    #P9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{000}／%f" #
-    #P9K_LEFT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 3 ))}／%f"
-    #P9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 3 ))}／%f"
-    #P9K_LEFT_SUBSEGMENT_SEPARATOR="%F{$DEFAULT_FOREGROUND}\uE0B0%f"
-    #P9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$DEFAULT_FOREGROUND}\uE0B3%f"
-
-    #P9K_LEFT_SEGMENT_SEPARATOR="\uE0B4"
-    #P9K_RIGHT_SEGMENT_SEPARATOR="\uE0B6"
-    P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
-    P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
-    #P9K_LEFT_SEGMENT_SEPARATOR="\uE0BC\u200A"
-    #P9K_RIGHT_SEGMENT_SEPARATOR="\u200A\uE0BA"
-    #P9K_LEFT_SEGMENT_SEPARATOR="\uE0BC"
-    #P9K_RIGHT_SEGMENT_SEPARATOR="\uE0BA"
-    #P9K_LEFT_SEGMENT_SEPARATOR="%F{$DEFAULT_BACKGROUND}\uE0BC%f"
-    #P9K_RIGHT_SEGMENT_SEPARATOR="%F{$DEFAULT_BACKGROUND}\uE0BA%f"
-
-    P9K_PROMPT_ON_NEWLINE=true
-    P9K_RPROMPT_ON_NEWLINE=false
-
-    P9K_STATUS_VERBOSE=true
-    P9K_STATUS_CROSS=true
-    P9K_PROMPT_ADD_NEWLINE=true
-
-    #P9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
-    #P9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="grey"
-
-    P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}%f"
-    P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}⮞ %f"
-    #P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}⇢ ➜  %f"
-    #P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR} ┄⇢ %f"
-
-    # P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir_writable dir vcs)
-    # P9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time ssh)
-
-    #P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir_writable dir_joined vcs)
-    #P9K_LEFT_PROMPT_ELEMENTS=(context dir_writable dir_joined vcs)
-    #P9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator exec_time background_jobs time)
-    P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs)
-    P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
-
-    P9K_MODE='nerdfont-complete'
-
-    P9K_VCS_GIT_GITHUB_ICON=""
-    P9K_VCS_GIT_BITBUCKET_ICON=""
-    P9K_VCS_GIT_GITLAB_ICON=""
-    P9K_VCS_GIT_ICON=""
-
-    P9K_VCS_CLEAN_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_VCS_CLEAN_FOREGROUND="010"
-
-    P9K_VCS_MODIFIED_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_VCS_MODIFIED_FOREGROUND="011"
-
-    P9K_VCS_UNTRACKED_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_VCS_UNTRACKED_FOREGROUND="012"
-    P9K_VCS_UNTRACKED_FOREGROUND="011"
-
-    P9K_DIR_HOME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_HOME_FOREGROUND="158"
-    P9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_HOME_SUBFOLDER_FOREGROUND="158"
-    P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
-    P9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_DEFAULT_FOREGROUND="158"
-    P9K_DIR_ETC_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_ETC_FOREGROUND="158"
-    P9K_DIR_NOT_WRITABLE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_NOT_WRITABLE_FOREGROUND="158"
-
-    P9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_ROOT_INDICATOR_FOREGROUND="red"
-
-    P9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_STATUS_OK_FOREGROUND="green"
-    P9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_STATUS_ERROR_FOREGROUND="red"
-
-    #P9K_TIME_FORMAT="%D{%H:%M:%S \uf017}" #  Jun 15  09:32
-    P9K_TIME_ICON="\uF017" # 
-    #P9K_TIME_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
-    P9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_TIME_FOREGROUND="183"
-
-    P9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_COMMAND_EXECUTION_TIME_FOREGROUND="183"
-    P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-    P9K_COMMAND_EXECUTION_TIME_PRECISION=1
-
-    P9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_BACKGROUND_JOBS_FOREGROUND="123"
-
-    P9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_USER_DEFAULT_FOREGROUND="cyan"
-    P9K_USER_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_USER_SUDO_FOREGROUND="magenta"
-    P9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_USER_ROOT_FOREGROUND="red"
-    P9K_USER_DEFAULT_ICON="\uF415" # 
-    P9K_USER_ROOT_ICON=$'\uFF03' # ＃
-
-    P9K_CONTEXT_TEMPLATE="\uF109 %m"
-    #P9K_CONTEXT_TEMPLATE="\uF109 %m"
-    P9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_CONTEXT_DEFAULT_FOREGROUND="$DEFAULT_FOREGROUND"
-    P9K_CONTEXT_DEFAULT_FOREGROUND="123"
-    P9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_CONTEXT_SUDO_FOREGROUND="$DEFAULT_FOREGROUND"
-    P9K_CONTEXT_SUDO_FOREGROUND="123"
-    P9K_CONTEXT_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_CONTEXT_REMOTE_FOREGROUND="$DEFAULT_FOREGROUND"
-    P9K_CONTEXT_REMOTE_FOREGROUND="123"
-    P9K_CONTEXT_REMOTE_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="$DEFAULT_FOREGROUND"
-    P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="123"
-    P9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_CONTEXT_ROOT_FOREGROUND="$DEFAULT_FOREGROUND"
-    P9K_CONTEXT_ROOT_FOREGROUND="123"
-
-    P9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_HOST_LOCAL_FOREGROUND="cyan"
-    P9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-    #P9K_HOST_REMOTE_FOREGROUND="magenta"
-    P9K_HOST_LOCAL_ICON="\uF109 " # 
-    P9K_HOST_REMOTE_ICON="\uF489 "  # 
-
-    P9K_SSH_ICON="\uF489 "  # 
-    #P9K_SSH_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
-    P9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_SSH_FOREGROUND="212"
-    #P9K_OS_ICON_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
-    P9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_OS_ICON_FOREGROUND="212"
-    #P9K_SHOW_CHANGESET=true
-fi
-
 # Then, source plugins and add commands to $PATH
 zplug load
 
@@ -809,4 +606,6 @@ zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if zplug check "romkatv/powerlevel10k"; then
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
