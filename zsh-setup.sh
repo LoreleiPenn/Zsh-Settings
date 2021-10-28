@@ -15,7 +15,7 @@ git clone https://github.com/LoreleiPenn/Zsh-Settings.git .
 cd $HOME
 for f in zshrc p10k.zsh; do
     echo "Linking $ZHOME/${f} -> ~/.${f}"
-    ln ${ZHOME}/${f} ~/.${f}
+    ln -s ${ZHOME}/${f} ~/.${f}
 done
 #echo "Linking $ZHOME/zshrc -> ~/.zshrc"
 #ln ${ZHOME}/zshrc ~/.zshrc
