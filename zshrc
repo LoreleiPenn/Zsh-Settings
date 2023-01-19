@@ -141,7 +141,7 @@ zplug "chrissicool/zsh-256color"
 zplug "mollifier/anyframe"
 
 # Miscellaneous commands
-zplug "zdharma/zsh-diff-so-fancy"
+# zplug "zdharma/zsh-diff-so-fancy"
 
 #zplug "andrewferrier/fzf-z"
 zplug "k4rthik/git-cal", as:command
