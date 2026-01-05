@@ -610,5 +610,23 @@ zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if zplug check "romkatv/powerlevel10k"; then
-    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    if [[ $TERM == "linux" ]]; then
+        [[ ! -f ~/.p10k-ascii.zsh ]] || source ~/.p10k-ascii.zsh
+    else
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    fi
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/Lorelei/.lmstudio/bin"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/Lorelei/.juliaup/bin' $path)
+export PATH
+
+# export HSA_OVERRIDE_GFX_VERSION=11.0.2
+
+# <<< juliaup initialize <<<
